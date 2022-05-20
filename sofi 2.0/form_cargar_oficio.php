@@ -18,6 +18,8 @@ $row = mysqli_fetch_assoc($result);
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -41,10 +43,8 @@ $row = mysqli_fetch_assoc($result);
   </head>
   
   <body>
-  
-         
-  <!-- Contenido -->
-    <main class="page">
+<!-- Contenido -->
+<main class="page">
     
     <!-- Llamda a archivo jquery -->
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
@@ -57,46 +57,39 @@ $row = mysqli_fetch_assoc($result);
         <p>
           "Sube (carga) tu oficio dependiendo las opciones que necesites:"
         </p>
-        <ol class="bottom-buffer top-buffer">        
-        <ul class="nav nav-tabs">
-          <!-- 
-          <li id="datos" class="active">
-            <a data-toggle="tab" href="#tab-01" aria-expanded="false">Datos</a>
-          </li> 
-          <li id="form_cargar_oficio_interno"  class>
-            <a data-toggle="tab" href="#tab-02" aria-expanded="false">Interno</a>
-          </li>
-          <li id="form_cargar_oficio_externo" class>
-            <a data-toggle="tab" href="#tab-03" aria-expanded="false">Externo</a>
-          </li>
-          -->
-          <li class="active" id="form_cargar_oficio_interno" class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-              Interno <span class="caret"></span>
+        <ol class="bottom-buffer top-buffer">
+
+      <ul class="nav nav-tabs">                         
+          <li  class="dropdown" >
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+              Interno<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li id="form_cargar_oficio_interno_remitente"  class>
+              <li class>
                 <a data-toggle="tab" href="#tab-01" aria-expanded="false">Destinatario (entrada)</a>
               </li>
-              <li id="form_cargar_oficio_interno_destinatario"  class>
+              <li class>
                 <a data-toggle="tab" href="#tab-02" aria-expanded="false">Remitente (salida)</a>
               </li>
             </ul>
           </li>
-          <li class id="form_cargar_oficio_interno" class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-              Externo <span class="caret"></span>
+          <li class="dropdown" >
+            <a class="dropdown-toggle" data-toggle="dropdown" href="# " role="button" aria-haspopup="false" aria-expanded="false">
+              Externo<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li id="form_cargar_oficio_interno_remitente"  class>
+              <li class>
                 <a data-toggle="tab" href="#tab-03" aria-expanded="false">Destinatario (entrada)</a>
               </li>
-              <li id="form_cargar_oficio_interno_destinatario"  class>
+              <li class>
                 <a data-toggle="tab" href="#tab-04" aria-expanded="false">Remitente (salida)</a>
               </li>
             </ul>
           </li>
         </ul>
+
+
+
         <!--Tenemos la parte de los contenedores de formularios tab-xx-->
         <div class="tab-content">
           <div class="tab-pane clearfix" id="tab-00">  
@@ -108,7 +101,8 @@ $row = mysqli_fetch_assoc($result);
                 <br>
               </div>
             </div>
-          </div>       
+          </div>   
+    
         <!--Tenemos el tab-05 donde ponemos un rapido resumen de los tipos de oficio-->
           <div class="tab-pane clearfix active" id="tab-05">  
             <div class="row">
@@ -153,8 +147,9 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
-          </div>       
-         <!--Tenemos el tab-01 el formulario  interno destinatario (entrada) 
+          </div>
+          
+            <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
         
       
         
@@ -162,7 +157,7 @@ $row = mysqli_fetch_assoc($result);
       
       
         -->
-          <div class="tab-pane clearfix " id="tab-01">
+        <div class="tab-pane clearfix " id="tab-01">
           <label for="datos" class="control-label">Formulario Interno Destinatario</label>
           <br>
           <br> 
@@ -198,15 +193,15 @@ $row = mysqli_fetch_assoc($result);
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el Remitente</option>
+                    <option value disabled selected>Seleciona el Destinatario</option>
                     <?php 
                       //sql rol 
-                      $sql1 = "SELECT * FROM usuario";        
+                      $sql1 = "SELECT * FROM 713utic";        
                       $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
                       if(mysqli_num_rows($result1)>0){
-                        while($rowUsuario = mysqli_fetch_assoc($result1)){
+                        while($row713utic = mysqli_fetch_assoc($result1)){
                       ?>
-                        <option value="<?php echo $rowUsuario['idUsuario']?>"><?php echo $rowUsuario['nombre']?></option>
+                        <option value="<?php echo $row713utic['idEmpleado']?>"><?php echo $row713utic['nombre'] . " " . $row713utic['apellidoPaterno'] . " " . $row713utic['apellidoMaterno']?></option>
                       <?php
                         }
                       }
@@ -308,7 +303,7 @@ $row = mysqli_fetch_assoc($result);
               </div>            
             </div>
             <div class="row">
-              <div class="col-md-6 col-xs-12">
+               <div class="col-md-6 col-xs-12">
                   <div class="form-group">
                   <label for="calendar" class="control-label">¿El oficio necesita respuesta?
                     <span class="asteriscoData form-text">*</span>
@@ -373,7 +368,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
           </form>
           </div>
-        <!--Tenemos el tab-02 el formulario  interno destinatario (salida) 
+            <!--Tenemos el tab-04 el formulario  externo remitente (entrada) 
         
       
         
@@ -381,7 +376,7 @@ $row = mysqli_fetch_assoc($result);
       
       
         -->
-          <div class="tab-pane clearfix" id="tab-02">
+        <div class="tab-pane clearfix" id="tab-02">
           <label for="datos" class="control-label">Formulario Interno Remitente</label>
           <br>
           <br>
@@ -549,7 +544,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
           </form>
         </div>
-        <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
+            <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
         
       
         
@@ -730,7 +725,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
           </form>
         </div>
-        <!--Tenemos el tab-04 el formulario  externo remitente (entrada) 
+            <!--Tenemos el tab-04 el formulario  externo remitente (entrada) 
         
       
         
@@ -739,7 +734,7 @@ $row = mysqli_fetch_assoc($result);
       
         -->
         <div class="tab-pane clearfix " id="tab-04">
-        <label for="datos" class="control-label">Formulario Externo Remitente</label>
+        <label  class="control-label">Formulario Externo Remitente</label>
           <br>
           <br>
         <form role="form" action="cargarOficio.php" method="post">
@@ -868,13 +863,45 @@ $row = mysqli_fetch_assoc($result);
             </div>
           </form>
         </div>
-        </div>
-        </ol>
-      </div>
+          
+
+
+
+
+          
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+</div>
     </div>
+  </div>
+</nav>
+       
     </main>
 
-    <!-- JS -->
+
+
+
+
+
+
+
+
+
+<!-- JS -->
     
      <!-- Contenido   <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>  -->
      <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
@@ -934,12 +961,7 @@ $row = mysqli_fetch_assoc($result);
      
      
 
-      <script>
-        $gmx('a[data-toggle="tab"]').on('shown.bs.tab', function (270) {
-          tab-02.target // newly activated tab
-          e.relatedTarget // previous active tab
-        })
-      </script>
+      
       
       
 
