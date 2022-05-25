@@ -7,7 +7,12 @@ include_once("conn/conn.php");
 //Agarramos el id que pasamos por la url 
 $idUsuario = $_GET['id'];
 //sql usuario con el id del url
-$sql = "SELECT * FROM usuario 
+$sql = "SELECT rol.nombreRol, 
+               713utic.idEmpleado, adscripcion, nombre, apellidoPaterno, apellidoMaterno, correo, activo, 
+               usuario.idUsuario, nombreUsuario, contraseniaUsuario
+FROM 713utic 
+INNER JOIN usuario ON 713utic.idEmpleado = usuario.idEmpleado 
+INNER JOIN rol ON usuario.idRol = rol.idRol 
         WHERE idUsuario ='".$idUsuario."'";        
 $result = mysqli_query($con,$sql) or die(mysqli_close($con));
 $row = mysqli_fetch_assoc($result);
@@ -67,13 +72,29 @@ $row = mysqli_fetch_assoc($result);
               <div class="col-sm-9">
                 <input class=".form-control" placeholder="<?php echo $row['correo'];?>" type="text" name="correo">
               </div>
-          </div>
+          </div> 
+          <!--
           <div class="form-group">
-            <label class="col-sm-3 control-label" for="password-03">Cargo</label>
+            <label class="col-sm-3 control-label" for="passwtextrd-03">Cargo</label>
               <div class="col-sm-9">
-                <input class=".form-control" placeholder="<?php echo $row['cargo'];?>" type="text" name="cargo">
+              <select class=".form-control" name="cargo">
+              <option value disabled selected><?php/* echo $row['adscripcion'];?></option>
+              <?php 
+              //sql rol 
+              $sql1 = "SELECT idEmpleado, adscripcion FROM 713utic WHERE 1";        
+              $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+              if(mysqli_num_rows($result1)>0){
+                while($rowRol = mysqli_fetch_assoc($result1)){
+              ?>
+                <option value="<?php echo $rowRol['idEmpleado']?>"><?php echo $rowRol['adscripcion']?></option>
+              <?php
+                }
+              }
+              */?>
+              </select>
               </div>
           </div>
+            -->
           <div class="form-group">
             <label class="col-sm-3 control-label" >Nombre Usuario</label>
               <div class="col-sm-9">
@@ -90,7 +111,7 @@ $row = mysqli_fetch_assoc($result);
             <label class="col-sm-3 control-label" for="passwtextrd-03">Rol</label>
               <div class="col-sm-9">
               <select class=".form-control" name="idRol">
-              <option value disabled selected>Seleciona el Rol</option>
+              <option value disabled selected><?php echo $row['nombreRol'];?></option>
               <?php 
               //sql rol 
               $sql1 = "SELECT * FROM rol";        
