@@ -54,8 +54,9 @@ include_once("conn/conn.php");
 			<th>Apellido Materno</th>
 			<th>Correo</th>
 			<th>Cargo</th>
-			<th>Fecha de registro</th>
+			<th>Fecha de ingreso</th>
 			<th>Rol</th>
+			<th>Activo</th>
 		</tr>
 	</thead>
     <tbody>
@@ -63,21 +64,25 @@ include_once("conn/conn.php");
     <?php
     if($con){
     //echo "se abre la conexióna la BD";
-	$sql= "SELECT * FROM usuario";	
+	$sql= "SELECT rol.nombreRol, 713utic. idEmpleado, adscripcion, nombre, apellidoPaterno, apellidoMaterno, correo, activo, fechaIngreso, usuario.idUsuario
+         FROM 713utic 
+         INNER JOIN usuario ON 713utic.idEmpleado = usuario.idEmpleado 
+         INNER JOIN rol ON usuario.idRol = rol.idRol;";	
 	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
     if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_assoc($result)){
 
     ?>
         <tr> 
-            <th><?php echo $row['idUsuario'] ?></td>
+            <th><?php echo $row['idEmpleado'] ?></td>
             <td><?php echo $row['nombre'] ?></td>
             <td><?php echo $row['apellidoPaterno'] ?></td>
             <td><?php echo $row['apellidoMaterno'] ?></td>
             <td><?php echo $row['correo'] ?></td>
-            <td><?php echo $row['cargo'] ?></td>
-            <td><?php echo $row['fecha'] ?></td>
-            <td><?php echo $row['idRol'] ?></td>
+            <td><?php echo $row['adscripcion'] ?></td>
+            <td><?php echo $row['fechaIngreso'] ?></td>
+            <td><?php echo $row['nombreRol'] ?></td>
+            <td><?php echo $row['activo'] ?></td>
             
             <td>
             <a href="form_actualiza_usuario.php?id=<?php echo $row['idUsuario']?>" class="btn btn-default">Editar</a>
