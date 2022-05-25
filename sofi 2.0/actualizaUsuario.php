@@ -54,7 +54,7 @@ if($con){
 	       WHERE idUsuario ='".$idUsuario."'";
 	$result1= mysqli_query($con,$sql1) or die(mysqli_close($con));
 
-	if($result){
+	if($result and $result1){
 
 				echo '<script type="text/javascript">
 					 alert("Se actualizó correctamente el usuario");

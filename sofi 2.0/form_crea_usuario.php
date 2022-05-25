@@ -33,81 +33,210 @@ include_once("conn/conn.php");
     <hr class="red">        
   <!-- Contenido -->
     <main class="page">
-    <form class="form-horizontal" role="form" action="creaUsuario.php" method="post">    
-          <div class="form-group">
-            <label class="col-sm-3 control-label">Nombre</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="nombreUsuario">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" >Apellido Paterno</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="apellidoPaterno">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" >Apellido Materno</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="apellidoMaterno">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" >Correo:</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="correo">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="password-03">Cargo</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="cargo">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" >Nombre Usuario</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="nombreUsuario">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" >Contraseña:</label>
-              <div class="col-sm-9">
-                <input class=".form-control" placeholder="" type="text" name="contraseniaUsuario">
-              </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-3 control-label" for="passwtextrd-03">Rol</label>
-              <div class="col-sm-9">
-               
-              <select class=".form-control" name="idRol">
+      <!-- Llamda a archivo jquery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 
-              <?php 
-              //sql rol 
-              $sql1 = "SELECT * FROM rol";        
-              $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-              if(mysqli_num_rows($result1)>0){
-                while($rowRol = mysqli_fetch_assoc($result1)){
-              ?>
-                <option value="<?php echo $rowRol['idRol']?>"><?php echo $rowRol['nombreRol']?></option>
-              <?php
-                }
-              }
-              ?>
-              </select>
+
+
+
+    <div class="row clearfix">
+      <div class="col-md-9">
+
+
+      <p>
+          "Ingresa los datos del nuevo Usuario"
+        </p>
+        <ol class="bottom-buffer top-buffer">
+      <div class="tab-pane clearfix " id="tab-01">
+          <label for="datos" class="control-label">Formulario Nuevo Usuario</label>
+          <br>
+          <br> 
+          <form role="form" action="creaUsuario.php" method="post">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="nombre" class="control-label">Nombre
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="nombre" type="text"
+                  class="campos form-control ember-text-field ember-view" name="nombre">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
               </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-              <button class="btn btn-primary pull-left" type="submit">Enviar</button>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="apeliidoPaterno" class="control-label">Apellido Paterno
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
+                  class="campos form-control ember-text-field ember-view" name="apellidoPaterno">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="apellidoMaterno" class="control-label">Apellido Materno
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="nombre" type="text"
+                  class="campos form-control ember-text-field ember-view" name="apellidoMaterno">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="correo" class="control-label">Correo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
+                  class="campos form-control ember-text-field ember-view" name="correo">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="adscripcion" class="control-label">Cargo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="adscripcion" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el cargo</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT adscripcion FROM 713utic";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowAdscripcion = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $rowAdscripcion['adscripcion']?>"><?php echo $rowAdscripcion['adscripcion']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="unidad" class="control-label">Unidad
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="idUnidad" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona la unidad</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM unidad";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowUnidad = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $rowUnidad['idUnidad']?>"><?php echo $rowUnidad['nombre']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="nombreUsuario" class="control-label">Nombre Usuario
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="nombre" type="text"
+                  class="campos form-control ember-text-field ember-view" name="nombreUsuario">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="contraseniaUsuario" class="control-label">Contraseña Usuario
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
+                  class="campos form-control ember-text-field ember-view" name="contraseniaUsuario">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="rol" class="control-label">Rol
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="idRol" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el rol</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM rol";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowRol = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $rowRol['idRol']?>"><?php echo $rowRol['nombreRol']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha de Ingreso
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaIngresoNuevoUsuario" type="text" 
+                  class="campos form-control ember-text-field ember-view" name="calendarioFechaIngresoNuevoUsuario">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-primary pull-right" type="submit">Enviar</button> 
+                </div>
+              </div>
+            </div>
+          </form>
           </div>
-        </form>
+      </div>
+    </div>
     </main>
 
     <!-- JS -->
     
      <!-- Contenido   <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>  -->
      <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+
+     <!-- Contenido para el calendario  <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>  -->
+     <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+
+     <!-- JS calendario calendarioFechaIngresoNuevoUsuario -->
+     <script type="text/javascript">
+      $gmx(document).ready(function() {
+        $('#calendarioFechaIngresoNuevoUsuario').datepicker({changeYear: true});
+      });
+       </script>
   </body>
 </html>

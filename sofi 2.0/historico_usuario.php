@@ -34,23 +34,13 @@ include_once("conn/conn.php");
   <body>
       
 
-  <h3> Usuarios </h3>
+  <h3> Historico Usuarios </h3>
 <hr class="red">
     <!-- Contenido -->
     <main class="page">
 
 
-</div>
-  <div class="row">
-  <div class="col-md-6"><h2> Usuarios </h2>
-            <td>
-              <a href="form_crea_usuario.php" class="btn btn-link">Nuevo usuario</a>
-            </td></div>
-  <div class="col-md-6"><h2> Historico usuarios </h2>
-            <td>
-              <a href="historico_usuario.php" class="btn btn-link">Historico Usuarios</a>
-            </td></div>
-</div>
+
 
 
 <table class="table table-responsive">
@@ -63,8 +53,8 @@ include_once("conn/conn.php");
 			<th>Correo</th>
 			<th>Cargo</th>
 			<th>Fecha de ingreso</th>
-			<th>Rol</th>
 			<th>Activo</th>
+			<th>Unidad</th>
 		</tr>
 	</thead>
     <tbody>
@@ -72,10 +62,7 @@ include_once("conn/conn.php");
     <?php
     if($con){
     //echo "se abre la conexióna la BD";
-	$sql= "SELECT rol.nombreRol, 713utic. idEmpleado, adscripcion, nombre, apellidoPaterno, apellidoMaterno, correo, activo, fechaIngreso, usuario.idUsuario
-         FROM 713utic 
-         INNER JOIN usuario ON 713utic.idEmpleado = usuario.idEmpleado 
-         INNER JOIN rol ON usuario.idRol = rol.idRol;";	
+	$sql= "SELECT * FROM 713utic where activo = '0';";	
 	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
     if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_assoc($result)){
@@ -89,14 +76,16 @@ include_once("conn/conn.php");
             <td><?php echo $row['correo'] ?></td>
             <td><?php echo $row['adscripcion'] ?></td>
             <td><?php echo $row['fechaIngreso'] ?></td>
-            <td><?php echo $row['nombreRol'] ?></td>
             <td><?php echo $row['activo'] ?></td>
+            <td><?php echo $row['idUnidad'] ?></td>
             
             <td>
-            <a href="form_actualiza_usuario.php?id=<?php echo $row['idUsuario']?>" class="btn btn-default">Editar</a>
+             <!-- 
+            <a href="form_actualiza_usuario.php?id=<?php/* echo $row['idUsuario']?>" class="btn btn-default">Editar</a>
             </td>
             <td>
-            <a href="eliminaUsuario.php?id=<?php echo $row['idUsuario']?>" class="btn btn-danger" >Eliminar</a> 
+            <a href="eliminaUsuario.php?id=<?php echo $row['idUsuario']*/?>" class="btn btn-danger" >Eliminar</a> 
+            -->
             </td>  
           </tr>
     <?php 

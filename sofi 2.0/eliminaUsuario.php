@@ -19,6 +19,7 @@ INNER JOIN rol ON usuario.idRol = rol.idRol
 $result = mysqli_query($con,$sql) or die(mysqli_close($con));
 $row = mysqli_fetch_assoc($result);
 $idEmpleado = $row['idEmpleado'];
+$activo0 = "0";
 
 
 
@@ -26,12 +27,17 @@ if($con){
 	$sql ="DELETE FROM usuario WHERE idUsuario ='".$idUsuario."'";
 	$result =mysqli_query($con,$sql) or die(mysqli_close($con));
 	//// Por alguna razon o funciona este update
-	$sql1 ="UPDATE 713utic 
-	        SET activo = 0
-			WHERE idEmpleado = '".$idEmpleado"'";
+	
+	$sql1="UPDATE 713utic 
+	SET activo=0
+	WHERE idEmpleado='".$idEmpleado."'";
 	$result1 =mysqli_query($con,$sql1) or die(mysqli_close($con));
 
-	if($result){
+
+	
+
+	
+	if($result and $result1){
 	echo '<script type="text/javascript">
 		     alert("Se Elimino correctamente el usuario");
 		     window.location.href="usuarios.php"
