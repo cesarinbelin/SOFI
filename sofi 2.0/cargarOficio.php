@@ -1,5 +1,4 @@
-<?php
-/*
+<?php/*
 include_once("../global/conn.php");
 if (isset($_POST['submit'])) {
 
@@ -29,7 +28,6 @@ if (move_uploaded_file($_FILES['oficio']['tmp_name'], $nuevo_nombre)) {
   }
 } 
 }
-
 */
 
 ?>
@@ -37,6 +35,27 @@ if (move_uploaded_file($_FILES['oficio']['tmp_name'], $nuevo_nombre)) {
 
 
 $numeroOficio = $_POST['numeroOficio'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$destinatario = $_POST['destinatario'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
+$fechaElaboracion = $_POST['fechaElaboracion'];
 echo $numeroOficio;
 
 
