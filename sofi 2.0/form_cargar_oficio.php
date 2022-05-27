@@ -194,45 +194,20 @@ $row = mysqli_fetch_assoc($result);
       
         -->
         <div class="tab-pane clearfix " id="tab-01">
-          <label for="datos" class="control-label">Formulario Interno Destinatario</label>
-          <br>
-          <br> 
           <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
+              <h4>Datos del Destinatario</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="numero-oficio" class="control-label">Número de oficio
+                  <label for="remitente" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="numeroOficio" type="text"
-                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de elaboración:
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
-                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="remitente" class="control-label">Destinatario
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
+                  <select name="destinatario" class="campos form-control form-selected select small">
                     <option value disabled selected>Seleciona el Destinatario</option>
                     <?php 
                       //sql rol 
-                      $sql1 = "SELECT * FROM 713utic";        
+                      $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
                       $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
                       if(mysqli_num_rows($result1)>0){
                         while($row713utic = mysqli_fetch_assoc($result1)){
@@ -247,9 +222,13 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <h4>Datos del Remitente</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="asunto" class="control-label">Remitente
+                  <label for="asunto" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <input type="text" id="destinatario" 
@@ -259,8 +238,6 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="cargo" class="control-label">Cargo
@@ -273,6 +250,8 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
+            </div>
+            <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="unidad" class="control-label">Unidad
@@ -293,6 +272,32 @@ $row = mysqli_fetch_assoc($result);
                       }
                       ?>
                   </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <h4>Datos del Oficio</h4>
+            <hr class="red">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="numero-oficio" class="control-label">Número de oficio
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="numeroOficio" type="text"
+                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha de elaboración:
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
+                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
@@ -358,7 +363,7 @@ $row = mysqli_fetch_assoc($result);
               </div>
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de respuesta
+                  <label for="calendar" class="control-label">Cuando es la fecha de respuesta
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <input id="calendarioFechaRespuestaInternoDestinatarioEntrada" type="text"
@@ -382,6 +387,19 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="file-01" type="file"
+                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
@@ -398,7 +416,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit">Enviar</button> 
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
                 </div>
               </div>
             </div>
@@ -558,6 +576,19 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="file-01" type="file"
+                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
@@ -574,7 +605,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit">Enviar</button> 
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
                 </div>
               </div>
             </div>
@@ -738,7 +769,20 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
-            </div>  
+            </div> 
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="file-01" type="file"
+                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
@@ -755,7 +799,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit">Enviar</button> 
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
                 </div>
               </div>
             </div>
@@ -877,6 +921,19 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                    <input id="file-01" type="file"
+                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
@@ -893,7 +950,7 @@ $row = mysqli_fetch_assoc($result);
             <div class="row">
               <div class="col-md-12 col-xs-12">
                 <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit">Enviar</button> 
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
                 </div>
               </div>
             </div>

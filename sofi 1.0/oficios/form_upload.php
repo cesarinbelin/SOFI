@@ -22,9 +22,11 @@ include("../vistas/permisos01.php");
         <form action="upload.php" method="post" enctype="multipart/form-data">
 
         <label>Sube tu oficio</label>
-        <span class="btn btn-default btn-file">
+        <span >
             <input name="oficio" type="file">
-        </span>
+        </span>	
+
+
         <br/><br/>
         <button type="submit" name="submit" class="btn-success">Enviar</button>
     </form>
