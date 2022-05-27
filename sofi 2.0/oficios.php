@@ -33,18 +33,120 @@ include_once("conn/conn.php");
   
   <body>
       
-  
-  <h3> Oficios </h3>
+
+<h3>Lista de Oficios</h3>
 <hr class="red">
     <!-- Contenido -->
     <main class="page">
+    <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
+        <span class="sr-only">Interruptor de Navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Sistema de Oficios</a>
+    </div>
+    <div class="collapse navbar-collapse" id="subenlaces">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="usuarios.php">Lista de Usuarios</a></li>
+            <li><a href="form_crea_usuario.php">Crear nuevo Usuario</a></li>
+            <li class="divider"></li>
+            <li><a href="historicoUsuario.php">Historico Usuarios</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Buscar Oficio</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<h3>Lista de Oficios</h3>
+<hr class="red">
 
 
-   
-<h2> Oficios </h2>
+
+
+
+<table class="table table-responsive">
+	<thead>
+		<tr>
+            <th>Id</th>
+			<th>Nombre</th>
+			<th>Apellido Paterno</th>
+			<th>Apellido Materno</th>
+			<th>Correo</th>
+			<th>Cargo</th>
+			<th>Fecha de ingreso</th>
+			<th>Activo</th>
+			<th>Unidad</th>
+		</tr>
+	</thead>
+    <tbody>
+        
+    <?php
+    if($con){
+    //echo "se abre la conexióna la BD";
+	$sql= "SELECT * FROM 713utic where activo = '0';";	
+	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
+    if(mysqli_num_rows($result)>0){
+    while($row = mysqli_fetch_assoc($result)){
+
+    ?>
+        <tr> 
+            <th><?php echo $row['idEmpleado'] ?></td>
+            <td><?php echo $row['nombre'] ?></td>
+            <td><?php echo $row['apellidoPaterno'] ?></td>
+            <td><?php echo $row['apellidoMaterno'] ?></td>
+            <td><?php echo $row['correo'] ?></td>
+            <td><?php echo $row['adscripcion'] ?></td>
+            <td><?php echo $row['fechaIngreso'] ?></td>
+            <td><?php echo $row['activo'] ?></td>
+            <td><?php echo $row['idUnidad'] ?></td>
+            
             <td>
-              <a href="form_cargar_oficio.php" class="btn btn-link">Nuevo oficio</a>
+             <!-- 
+            <a href="form_actualiza_usuario.php?id=<?php/* echo $row['idUsuario']?>" class="btn btn-default">Editar</a>
             </td>
+            <td>
+            <a href="eliminaUsuario.php?id=<?php echo $row['idUsuario']*/?>" class="btn btn-danger" >Eliminar</a> 
+            -->
+            </td>  
+          </tr>
+    <?php 
+    }
+    } else{
+		echo "No se pudo ejecutar la sentencia SQL";
+	}
+    } else{
+        echo "Hubo un error";
+    } ?>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+  
+
+
        
     </main>
 

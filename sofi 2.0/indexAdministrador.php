@@ -49,7 +49,7 @@ include_once("conn/conn.php");
 <hr class="red">
     <!-- Contenido -->
     <main class="page">
-    <nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
+<nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
@@ -62,16 +62,22 @@ include_once("conn/conn.php");
     </div>
     <div class="collapse navbar-collapse" id="subenlaces">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="usuarios.php">Usuarios</a></li>
-        <li><a href="oficios.php">Oficios</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Desplegable <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Acción</a></li>
-            <li><a href="#">Otra acción</a></li>
-            <li><a href="#">Algo más aquí</a></li>
+            <li><a href="usuarios.php">Lista de Usuarios</a></li>
+            <li><a href="form_crea_usuario.php">Crear nuevo Usuario</a></li>
             <li class="divider"></li>
-            <li><a href="#">Enlace separado</a></li>
+            <li><a href="historicoUsuario.php">Historico Usuarios</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>

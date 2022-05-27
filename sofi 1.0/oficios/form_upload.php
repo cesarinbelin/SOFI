@@ -8,7 +8,6 @@ include("../vistas/permisos01.php");
 	<head>
 		<meta charset = "UTF-8">
 		<title> Formulario alta oficio </title>
-		<script src="validacion_usuario.js"></script>
 		<link rel = "stylesheet" type="text/css" href="css/estilo_form_autor.css"/> 
 	</head>
 	<body>

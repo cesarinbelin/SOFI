@@ -43,20 +43,56 @@ $row = mysqli_fetch_assoc($result);
   </head>
   
   <body>
-<!-- Contenido -->
-<main class="page">
+<h3>Sube tu Oficio</h3>
+<hr class="red">
+    <!-- Contenido -->
+
+    <main class="page">
+<nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
+        <span class="sr-only">Interruptor de Navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Sistema de Oficios</a>
+    </div>
+    <div class="collapse navbar-collapse" id="subenlaces">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="usuarios.php">Lista de Usuarios</a></li>
+            <li><a href="form_crea_usuario.php">Crear nuevo Usuario</a></li>
+            <li class="divider"></li>
+            <li><a href="historicoUsuario.php">Historico Usuarios</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Buscar Oficio</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<h3>Sube tu Oficio</h3>
+<hr class="red">
     
     <!-- Llamda a archivo jquery -->
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 
-    <h3> Favor de ingresar los siguientes datos:</h3>
-    <hr class="red"> 
-
     <div class="row clearfix">
       <div class="col-md-8">
-        <p>
-          "Sube (carga) tu oficio dependiendo las opciones que necesites:"
-        </p>
+        
         <ol class="bottom-buffer top-buffer">
 
       <ul class="nav nav-tabs">                         
@@ -161,7 +197,7 @@ $row = mysqli_fetch_assoc($result);
           <label for="datos" class="control-label">Formulario Interno Destinatario</label>
           <br>
           <br> 
-          <form role="form" action="cargarOficio.php" method="post">
+          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -380,7 +416,7 @@ $row = mysqli_fetch_assoc($result);
           <label for="datos" class="control-label">Formulario Interno Remitente</label>
           <br>
           <br>
-          <form role="form" action="cargarOficio.php" method="post">
+          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -556,7 +592,7 @@ $row = mysqli_fetch_assoc($result);
         <label for="datos" class="control-label">Formulario Externo Destinatario</label>
           <br>
           <br>
-        <form role="form" action="cargarOficio.php" method="post">
+        <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -737,7 +773,7 @@ $row = mysqli_fetch_assoc($result);
         <label  class="control-label">Formulario Externo Remitente</label>
           <br>
           <br>
-        <form role="form" action="cargarOficio.php" method="post">
+        <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">

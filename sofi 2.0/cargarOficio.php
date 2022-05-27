@@ -27,7 +27,7 @@ if (move_uploaded_file($_FILES['oficio']['tmp_name'], $nuevo_nombre)) {
   } else {
        echo 'Algo fallo :c cesarinbelin';
   }
-}
+} 
 }
 
 */

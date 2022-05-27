@@ -12,17 +12,17 @@ $apellidoMaterno = $_POST['apellidoMaterno'];
 $adscripcion = $_POST['adscripcion'];
 $correo = $_POST['correo'];
 $idUnidad = $_POST['idUnidad'];
-$fechaIngreso = $_POST['calendarioFechaIngresoNuevoUsuario'];
+$fechaIngreso = $_POST['calendarioFechaIngresoNuevoUsuario'] . " 00:00:00";
 $nombreUsuario = $_POST['nombreUsuario'];
 $contraseniaUsuario = md5($_POST['contraseniaUsuario']);
 $idRol = $_POST['idRol'];
- 
+
 if($con){
 	//echo "se abre la conexióna la BD";
 
 	//Esta consulta no funcion al 100
 	$sql1="INSERT INTO 713utic (adscripcion, nombre, apellidoPaterno, apellidoMaterno,  correo, activo, idUnidad, fechaIngreso) 
-          VALUES('$adscripcion', $nombre', '$apellidoPaterno', '$apellidoMaterno', '$correo', 1, '$idUnidad', '$fechaIngreso')";
+          VALUES('$adscripcion', '$nombre', '$apellidoPaterno', '$apellidoMaterno', '$correo', '1', '$idUnidad', '$fechaIngreso')";
 	$result1=mysqli_query($con,$sql1) or die(mysqli_close($con));
 	
 	  if($result1){	
