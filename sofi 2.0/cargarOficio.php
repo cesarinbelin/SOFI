@@ -2,6 +2,7 @@
 include ("sesiones.php");
 include("permiso01.php");
 include_once("conn/conn.php");
+include_once("carpetas.php");
 
 //Configuramos la hora
 date_default_timezone_set("America/Mexico_City");
@@ -42,7 +43,8 @@ if($con){
 
 if (isset($_POST['submit'])) {
 //El nombre de la carpeta a donde la vamos a poner 
-$carpeta = 'oficios/';
+
+$carpeta = 'oficios/mario';
 
 //En esta parte obtenemos el nombre el archivo y captamos el nombre del mismo
 $nombre = basename($_FILES['archivoOficio']['name']);
@@ -69,7 +71,7 @@ if (move_uploaded_file($_FILES['archivoOficio']['tmp_name'], $nuevo_nombre_ruta)
                            '$fechaRecibidoSICT', 
                            '$fechaRespuesta', '$oficioReferencia1', '$oficioReferencia1',
                            '$oficioReferencia1', '$oficioReferencia1', '$fechaRegistroSOFI', 
-                           '$idEmpleado', '$nombre', '$cargo', '$unidad', '$nuevo_nombre')";
+                           '$idEmpleado', '$nombre', '$cargo', '$unidad', '$nuevo_nombre_ruta')";
                    //.die(mysql_error());
        $result = mysqli_query($con, $sql)or die(mysqli_error($con));
   }
