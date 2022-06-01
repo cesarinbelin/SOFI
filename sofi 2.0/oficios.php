@@ -84,15 +84,13 @@ include_once("conn/conn.php");
 <table class="table table-responsive">
 	<thead>
 		<tr>
-            <th>Id</th>
 			<th>Nombre</th>
-			<th>Apellido Paterno</th>
-			<th>Apellido Materno</th>
-			<th>Correo</th>
-			<th>Cargo</th>
-			<th>Fecha de ingreso</th>
-			<th>Activo</th>
-			<th>Unidad</th>
+			<th>Asunto</th>
+			<th>Empleado</th>
+      <th>Unidad</th>
+			<th>Fecha de elaboracion</th>
+			<th>Estado Oficio</th>
+			<th>PDF</th>
 		</tr>
 	</thead>
     <tbody>
@@ -100,30 +98,26 @@ include_once("conn/conn.php");
     <?php
     if($con){
     //echo "se abre la conexióna la BD";
-	$sql= "SELECT * FROM 713utic where activo = '0';";	
+	$sql= "SELECT * FROM oficio where tipoOficio = '0';";	
 	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
     if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_assoc($result)){
+    $direccion=$row["direccion"];
+    $idOficio=$row["idOficio"];
+    $nombre=$row["nombre"];
 
     ?>
         <tr> 
-            <th><?php echo $row['idEmpleado'] ?></td>
-            <td><?php echo $row['nombre'] ?></td>
-            <td><?php echo $row['apellidoPaterno'] ?></td>
-            <td><?php echo $row['apellidoMaterno'] ?></td>
-            <td><?php echo $row['correo'] ?></td>
-            <td><?php echo $row['adscripcion'] ?></td>
-            <td><?php echo $row['fechaIngreso'] ?></td>
-            <td><?php echo $row['activo'] ?></td>
-            <td><?php echo $row['idUnidad'] ?></td>
+            <td><?php echo $row['oficio'] ?></td>
+            <td><?php echo $row['asunto'] ?></td>
+            <td><?php echo $row['idEmpleado'] ?></td>
+            <td><?php echo $row['unidad'] ?></td>
+            <td><?php echo $row['fechaElaboracion'] ?></td>
+            <td><?php echo $row['estadoOficio'] ?></td>
+            <td><a target=black href="<?php echo $direccion ?>?id=<?php echo $idOficio ?>" class="btn btn-link"><?php echo $nombre ?></a></td>
+            <td>
+            <a href="eliminaOficio.php?id=<?php echo $row['idOficio']?>" class="btn btn-danger" >Eliminar</a> 
             
-            <td>
-             <!-- 
-            <a href="form_actualiza_usuario.php?id=<?php/* echo $row['idUsuario']?>" class="btn btn-default">Editar</a>
-            </td>
-            <td>
-            <a href="eliminaUsuario.php?id=<?php echo $row['idUsuario']*/?>" class="btn btn-danger" >Eliminar</a> 
-            -->
             </td>  
           </tr>
     <?php 

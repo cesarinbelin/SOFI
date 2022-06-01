@@ -185,7 +185,7 @@ $row = mysqli_fetch_assoc($result);
             </div>
           </div>
           
-            <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
+        <!--Tenemos el tab-01 el formulario  externo destinatario (entrada) 
         
       
         
@@ -197,6 +197,241 @@ $row = mysqli_fetch_assoc($result);
           <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <h4>Datos del Destinatario</h4>
+              <hr class="red">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="remitente" class="control-label">Nombre
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="idEmpleado" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el Destinatario</option>
+                    <option value="0">CIRCULAR (PARA TODOS)</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($row713utic = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $row713utic['idEmpleado']?>"><?php echo $row713utic['nombre'] . " " . $row713utic['apellidoPaterno'] . " " . $row713utic['apellidoMaterno']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Datos del Remitente</h4>
+              <hr class="red">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="remitente" class="control-label">Nombre
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="destinatario" 
+                        palceholder="remitente" 
+                        class="campos form-control ember-text-field ember-view" name="nombre">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="cargo" class="control-label">Cargo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="cargo" 
+                        palceholder="Viene de tabla" 
+                        class="campos form-control ember-text-field ember-view" name="cargo">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="unidad" class="control-label">Unidad
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="unidad" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona la unidad</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM unidad";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowUnidad = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $rowUnidad['idUnidad']?>"><?php echo $rowUnidad['nombre']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <h4>Datos del Oficio</h4>
+            <hr class="red">
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="oficio" class="control-label">Número de oficio
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="oficio" type="text"
+                  class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha de elaboración:
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="date"
+                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="oficioReferencia1" class="control-label">Oficio Referencia
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="oficioReferencia1" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el oficio</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM oficio WHERE tipoOficio = 0";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowOficio = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $rowOficio['idOficio']?>"><?php echo $rowOficio['nombre']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha recibido por la SICT (Dora)
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaRecibidoSICTInternoDestinatarioEntrada" type="date"
+                  class="campos form-control ember-text-field ember-view" name="fechaRecibidoSICT">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>            
+            </div>
+            <div class="row">
+               <div class="col-md-6 col-xs-12">
+                  <div class="form-group">
+                  <label for="calendar" class="control-label">¿El oficio necesita respuesta?
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="1" name="estadoOficio">Si
+                    </label>
+                    <label>
+                      <input type="checkbox" value="0" name="estadoOficio">No
+                    </label>
+                  </div>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                 </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha de respuesta
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaRespuestaInternoDestinatarioEntrada" type="date"
+                  class="campos form-control ember-text-field ember-view" name="fechaRespuesta">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">                    
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="asunto" class="control-label">Asunto
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="asunto" 
+                        palceholder="asunto" 
+                        class="campos form-control ember-text-field ember-view" name="asunto">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input  type="file"
+                        class="campos form-control ember-text-field ember-view" name="archivoOficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Breve Descripción
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view" name="descripcion">
+                  </textarea>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
+                </div>
+              </div>
+            </div>
+          </form>
+          </div>
+            <!--Tenemos el tab-02 el formulario  externo remitente (entrada) 
+        
+      
+        
+      
+      
+      
+        -->
+        <div class="tab-pane clearfix" id="tab-02">
+          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <h4>Datos del Remitente</h4>
               <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -224,7 +459,7 @@ $row = mysqli_fetch_assoc($result);
               </div>
             </div>
             <div class="row">
-              <h4>Datos del Remitente</h4>
+              <h4>Datos del Destinatario</h4>
               <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -277,6 +512,176 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
+            <div class="row">
+              <h4>Datos del Oficio</h4>
+              <hr class="red">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="numero-oficio" class="control-label">Número de oficio
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="numeroOficio" type="text"
+                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="calendar" class="control-label">Fecha de elaboración:
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="calendarioFechaElaboradoInternoRemitenteSalida" type="text"
+                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+  
+            
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="oficioReferencia" class="control-label">Oficio Referencia
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="idRol" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el oficio</option>
+                    <?php /*
+                      //sql rol 
+                      $sql1 = "SELECT * FROM rol";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($rowRol = mysqli_fetch_assoc($result1)){*/
+                      ?>
+                        <option value="">Oficio 1</option>
+                        <option value="">Oficio 2</option>
+                        <option value="">Oficio 3</option>
+                        <option value="">Oficio 4</option>
+                      <?php/*
+                        }
+                      }*/
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="asunto" class="control-label">Asunto
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="asunto" 
+                        palceholder="Asunto" 
+                        class="campos form-control ember-text-field ember-view" name="asunto">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">                    
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="file-01" class="control-label">Subir archivo
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input id="file-01" type="file"
+                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="" class="control-label">Breve Descripción
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view">
+                  </textarea>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
+        
+      
+        
+      
+      
+      
+        -->
+        <div class="tab-pane clearfix " id="tab-03">
+          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <h4>Datos del Destinatario</h4>
+              <hr class="red">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="remitente" class="control-label">Nombre
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <select name="destinatario" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el Destinatario</option>
+                    <?php 
+                      //sql rol 
+                      $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
+                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
+                      if(mysqli_num_rows($result1)>0){
+                        while($row713utic = mysqli_fetch_assoc($result1)){
+                      ?>
+                        <option value="<?php echo $row713utic['idEmpleado']?>"><?php echo $row713utic['nombre'] . " " . $row713utic['apellidoPaterno'] . " " . $row713utic['apellidoMaterno']?></option>
+                      <?php
+                        }
+                      }
+                      ?>
+                  </select>
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h4>Datos del Remitente</h4>
+              <hr class="red">
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="asunto" class="control-label">Nombre
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="destinatario" 
+                        palceholder="Destinatario" 
+                        class="campos form-control ember-text-field ember-view" name="destinatario">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <div class="form-group">
+                  <label for="empresa" class="control-label">Empresa
+                    <span class="asteriscoData form-text">*</span>
+                  </label>
+                  <input type="text" id="empresa" 
+                        palceholder="" 
+                        class="campos form-control ember-text-field ember-view" name="empresa">
+                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+            </div>
             <h4>Datos del Oficio</h4>
             <hr class="red">
             <div class="row">
@@ -296,7 +701,7 @@ $row = mysqli_fetch_assoc($result);
                   <label for="calendar" class="control-label">Fecha de elaboración:
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="text"
+                  <input id="calendarioFechaElaboradoExternoDestinatarioEntrada" type="text"
                   class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
@@ -336,7 +741,7 @@ $row = mysqli_fetch_assoc($result);
                   <label for="calendar" class="control-label">Fecha recibido por la SICT (Dora)
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="calendarioFechaRecibidoSICTInternoDestinatarioEntrada" type="text"
+                  <input id="calendarioFechaRecibidoSICTExternoDestinatarioEntrada" type="text"
                   class="campos form-control ember-text-field ember-view">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
@@ -363,10 +768,10 @@ $row = mysqli_fetch_assoc($result);
               </div>
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="calendar" class="control-label">Cuando es la fecha de respuesta
+                  <label for="calendar" class="control-label">Fecha de respuesta
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="calendarioFechaRespuestaInternoDestinatarioEntrada" type="text"
+                  <input id="calendarioFechaRespuestaExternoDestinatarioEntrada" type="text"
                   class="campos form-control ember-text-field ember-view">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
@@ -430,51 +835,26 @@ $row = mysqli_fetch_assoc($result);
       
       
         -->
-        <div class="tab-pane clearfix" id="tab-02">
-          <label for="datos" class="control-label">Formulario Interno Remitente</label>
-          <br>
-          <br>
+        <div class="tab-pane clearfix " id="tab-04">
           <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
             <div class="row">
+              <h4>Datos del Remitente</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="numero-oficio" class="control-label">Número de oficio
+                  <label for="remitente" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="numeroOficio" type="text"
-                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de elaboración:
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="calendarioFechaElaboradoInternoRemitenteSalida" type="text"
-                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="remitente" class="control-label">Remitente
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
+                  <select name="destinatario" class="campos form-control form-selected select small">
                     <option value disabled selected>Seleciona el Remitente</option>
                     <?php 
                       //sql rol 
-                      $sql1 = "SELECT * FROM usuario";        
+                      $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
                       $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
                       if(mysqli_num_rows($result1)>0){
-                        while($rowUsuario = mysqli_fetch_assoc($result1)){
+                        while($row713utic = mysqli_fetch_assoc($result1)){
                       ?>
-                        <option value="<?php echo $rowUsuario['idUsuario']?>"><?php echo $rowUsuario['nombre']?></option>
+                        <option value="<?php echo $row713utic['idEmpleado']?>"><?php echo $row713utic['nombre'] . " " . $row713utic['apellidoPaterno'] . " " . $row713utic['apellidoMaterno']?></option>
                       <?php
                         }
                       }
@@ -484,9 +864,13 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
+            </div>
+            <div class="row">
+              <h4>Datos del Destinatario</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="asunto" class="control-label">Destinatario
+                  <label for="asunto" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <input type="text" id="destinatario" 
@@ -496,328 +880,21 @@ $row = mysqli_fetch_assoc($result);
                   </small>
                 </div>
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="cargo" class="control-label">Cargo
+                  <label for="empresa" class="control-label">Empresa
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input type="text" id="cargo" 
-                        palceholder="Viene de tabla" 
-                        class="campos form-control ember-text-field ember-view" name="cargo">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="unidad" class="control-label">Unidad
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona la unidad</option>
-                    <?php 
-                      //sql rol 
-                      $sql1 = "SELECT * FROM unidad";        
-                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-                      if(mysqli_num_rows($result1)>0){
-                        while($rowUnidad = mysqli_fetch_assoc($result1)){
-                      ?>
-                        <option value="<?php echo $rowUnidad['idUnidad']?>"><?php echo $rowUnidad['nombre']?></option>
-                      <?php
-                        }
-                      }
-                      ?>
-                  </select>
+                  <input type="text" id="empresa" 
+                        palceholder="" 
+                        class="campos form-control ember-text-field ember-view" name="empresa">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="oficioReferencia" class="control-label">Oficio Referencia
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el oficio</option>
-                    <?php /*
-                      //sql rol 
-                      $sql1 = "SELECT * FROM rol";        
-                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-                      if(mysqli_num_rows($result1)>0){
-                        while($rowRol = mysqli_fetch_assoc($result1)){*/
-                      ?>
-                        <option value="">Oficio 1</option>
-                        <option value="">Oficio 2</option>
-                        <option value="">Oficio 3</option>
-                        <option value="">Oficio 4</option>
-                      <?php/*
-                        }
-                      }*/
-                      ?>
-                  </select>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="asunto" class="control-label">Asunto
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input type="text" id="asunto" 
-                        palceholder="Asunto" 
-                        class="campos form-control ember-text-field ember-view" name="asunto">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">                    
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="file-01" class="control-label">Subir archivo
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="file-01" type="file"
-                        class="campos form-control ember-text-field ember-view" name="oficio">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="" class="control-label">Breve Descripción
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view">
-                  </textarea>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-            <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
-        
-      
-        
-      
-      
-      
-        -->
-        <div class="tab-pane clearfix " id="tab-03">
-        <label for="datos" class="control-label">Formulario Externo Destinatario</label>
-          <br>
-          <br>
-        <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="numero-oficio" class="control-label">Número de oficio
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="numeroOficio" type="text"
-                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de elaboración:
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="calendarioFechaElaboradoExternoDestinatarioEntrada" type="text"
-                  class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="remitente" class="control-label">Destinatario
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el Remitente</option>
-                    <?php 
-                      //sql rol 
-                      $sql1 = "SELECT * FROM usuario";        
-                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-                      if(mysqli_num_rows($result1)>0){
-                        while($rowUsuario = mysqli_fetch_assoc($result1)){
-                      ?>
-                        <option value="<?php echo $rowUsuario['idUsuario']?>"><?php echo $rowUsuario['nombre']?></option>
-                      <?php
-                        }
-                      }
-                      ?>
-                  </select>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="asunto" class="control-label">Remitente
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input type="text" id="destinatario" 
-                        palceholder="Destinatario" 
-                        class="campos form-control ember-text-field ember-view" name="destinatario">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="oficioReferencia" class="control-label">Oficio Referencia
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el oficio</option>
-                    <?php /*
-                      //sql rol 
-                      $sql1 = "SELECT * FROM rol";        
-                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-                      if(mysqli_num_rows($result1)>0){
-                        while($rowRol = mysqli_fetch_assoc($result1)){*/
-                      ?>
-                        <option value="">Oficio 1</option>
-                        <option value="">Oficio 2</option>
-                        <option value="">Oficio 3</option>
-                        <option value="">Oficio 4</option>
-                      <?php/*
-                        }
-                      }*/
-                      ?>
-                  </select>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>              
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-xs-12">
-                  <div class="form-group">
-                  <label for="calendar" class="control-label">¿El oficio necesita respuesta?
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" value="opcion-01">Si
-                    </label>
-                    <label>
-                      <input type="checkbox" value="opcion-02" >No
-                    </label>
-                  </div>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                 </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de respuesta
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="calendarioFechaRespuestaExternoDestinatarioEntrada" type="text"
-                  class="campos form-control ember-text-field ember-view">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">                                     
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="calendar" class="control-label">Fecha de recibido por la SCT (Dora)
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="calendarioFechaRecibidoSICTExternoDestinatarioEntrada" type="text"
-                  class="campos form-control ember-text-field ember-view">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="asunto" class="control-label">Asunto
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input type="text" id="asunto" 
-                        palceholder="Asunto" 
-                        class="campos form-control ember-text-field ember-view" name="asunto">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div> 
-            <div class="row">                    
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="file-01" class="control-label">Subir archivo
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input id="file-01" type="file"
-                        class="campos form-control ember-text-field ember-view" name="oficio">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                  <label for="" class="control-label">Breve Descripción
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view">
-                  </textarea>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div class="form-group">
-                    <button class="btn btn-primary pull-right" type="submit" name="submit" class="btn-success">Enviar</button> 
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-            <!--Tenemos el tab-04 el formulario  externo remitente (entrada) 
-        
-      
-        
-      
-      
-      
-        -->
-        <div class="tab-pane clearfix " id="tab-04">
-        <label  class="control-label">Formulario Externo Remitente</label>
-          <br>
-          <br>
-        <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
+            <h4>Datos del Oficio</h4>
+            <hr class="red">
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -842,44 +919,6 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
-            <div class="row">            
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="remitente" class="control-label">Destinatario
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el Remitente</option>
-                    <?php 
-                      //sql rol 
-                      $sql1 = "SELECT * FROM usuario";        
-                      $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
-                      if(mysqli_num_rows($result1)>0){
-                        while($rowUsuario = mysqli_fetch_assoc($result1)){
-                      ?>
-                        <option value="<?php echo $rowUsuario['idUsuario']?>"><?php echo $rowUsuario['nombre']?></option>
-                      <?php
-                        }
-                      }
-                      ?>
-                  </select>
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-12">
-                <div class="form-group">
-                  <label for="asunto" class="control-label">Remitente
-                    <span class="asteriscoData form-text">*</span>
-                  </label>
-                  <input type="text" id="destinatario" 
-                        palceholder="Destinatario" 
-                        class="campos form-control ember-text-field ember-view" name="destinatario">
-                  <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
-                  </small>
-                </div>
-              </div>
-            </div>
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
@@ -907,7 +946,9 @@ $row = mysqli_fetch_assoc($result);
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
-              </div>                     
+              </div>           
+            </div>
+            <div class="row">                    
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="asunto" class="control-label">Asunto
@@ -927,7 +968,7 @@ $row = mysqli_fetch_assoc($result);
                   <label for="file-01" class="control-label">Subir archivo
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                    <input id="file-01" type="file"
+                  <input id="file-01" type="file"
                         class="campos form-control ember-text-field ember-view" name="oficio">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
@@ -955,7 +996,7 @@ $row = mysqli_fetch_assoc($result);
               </div>
             </div>
           </form>
-        </div>
+          </div>
           
 
 
@@ -1000,8 +1041,9 @@ $row = mysqli_fetch_assoc($result);
      <script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 
 
+
     <!-- Contenido para el calendario  <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>  -->
-     <script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+     <!--<script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>-->
       
      
      <!-- JS calendario interno destinatario -->
@@ -1009,6 +1051,9 @@ $row = mysqli_fetch_assoc($result);
       $gmx(document).ready(function() {
         $('#calendarioFechaElaboradoInternoDestinatarioEntrada').datepicker({changeYear: true});
       });
+
+
+
        </script>
      <script type="text/javascript">
       $gmx(document).ready(function() {
