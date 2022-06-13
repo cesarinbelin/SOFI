@@ -1,4 +1,5 @@
 <?php
+
 include ("sesiones.php");
 include("permiso01.php");
 include_once("conn/conn.php");
@@ -73,10 +74,10 @@ $row = mysqli_fetch_assoc($result);
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
             <li class="divider"></li>
-            <li><a href="#">Buscar Oficio</a></li>
+            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>
@@ -194,7 +195,7 @@ $row = mysqli_fetch_assoc($result);
       
         -->
         <div class="tab-pane clearfix " id="tab-01">
-          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
+          <form role="form" action="cargarOficioForm_1.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <h4>Datos del Destinatario</h4>
               <hr class="red">
@@ -208,7 +209,7 @@ $row = mysqli_fetch_assoc($result);
                     <option value="0">CIRCULAR (PARA TODOS)</option>
                     <?php 
                       //sql rol 
-                      $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
+                      $sql1 = "SELECT * FROM 713utic WHERE activo='0'";        
                       $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
                       if(mysqli_num_rows($result1)>0){
                         while($row713utic = mysqli_fetch_assoc($result1)){
@@ -278,9 +279,9 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
-            <h4>Datos del Oficio</h4>
-            <hr class="red">
             <div class="row">
+              <h4>Datos del Oficio</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="oficio" class="control-label">Número de oficio
@@ -319,7 +320,7 @@ $row = mysqli_fetch_assoc($result);
                       if(mysqli_num_rows($result1)>0){
                         while($rowOficio = mysqli_fetch_assoc($result1)){
                       ?>
-                        <option value="<?php echo $rowOficio['idOficio']?>"><?php echo $rowOficio['nombre']?></option>
+                        <option value="<?php echo $rowOficio['idOficio']?>"><?php echo $rowOficio['oficio']?></option>
                       <?php
                         }
                       }
@@ -429,7 +430,7 @@ $row = mysqli_fetch_assoc($result);
       
         -->
         <div class="tab-pane clearfix" id="tab-02">
-          <form role="form" action="cargarOficio.php" method="post" enctype="multipart/form-data">
+          <form role="form" action="cargarOficioForm_2.php" method="post" enctype="multipart/form-data">
             <div class="row">
               <h4>Datos del Remitente</h4>
               <hr class="red">
@@ -438,8 +439,9 @@ $row = mysqli_fetch_assoc($result);
                   <label for="remitente" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <select name="destinatario" class="campos form-control form-selected select small">
-                    <option value disabled selected>Seleciona el Destinatario</option>
+                  <select name="idEmpleado" class="campos form-control form-selected select small">
+                    <option value disabled selected>Seleciona el Remitente</option>
+                    <option value="0">CIRCULAR (PARA TODOS)</option>
                     <?php 
                       //sql rol 
                       $sql1 = "SELECT * FROM 713utic WHERE activo='1'";        
@@ -463,12 +465,12 @@ $row = mysqli_fetch_assoc($result);
               <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="asunto" class="control-label">Nombre
+                  <label for="remitente" class="control-label">Nombre
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <input type="text" id="destinatario" 
-                        palceholder="Destinatario" 
-                        class="campos form-control ember-text-field ember-view" name="destinatario">
+                        palceholder="remitente" 
+                        class="campos form-control ember-text-field ember-view" name="nombre">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
@@ -492,7 +494,7 @@ $row = mysqli_fetch_assoc($result);
                   <label for="unidad" class="control-label">Unidad
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
+                  <select name="unidad" class="campos form-control form-selected select small">
                     <option value disabled selected>Seleciona la unidad</option>
                     <?php 
                       //sql rol 
@@ -517,11 +519,11 @@ $row = mysqli_fetch_assoc($result);
               <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="numero-oficio" class="control-label">Número de oficio
+                  <label for="oficio" class="control-label">Número de oficio
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="numeroOficio" type="text"
-                  class="campos form-control ember-text-field ember-view" name="numeroOficio">
+                  <input id="oficio" type="text"
+                  class="campos form-control ember-text-field ember-view" name="oficio">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
@@ -531,37 +533,32 @@ $row = mysqli_fetch_assoc($result);
                   <label for="calendar" class="control-label">Fecha de elaboración:
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="calendarioFechaElaboradoInternoRemitenteSalida" type="text"
+                  <input id="calendarioFechaElaboradoInternoDestinatarioEntrada" type="date"
                   class="campos form-control ember-text-field ember-view" name="fechaElaboracion">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
               </div>
             </div>
-  
-            
             <div class="row">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
-                  <label for="oficioReferencia" class="control-label">Oficio Referencia
+                  <label for="oficioReferencia1" class="control-label">Oficio Referencia
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <select name="idRol" class="campos form-control form-selected select small">
+                  <select name="oficioReferencia1" class="campos form-control form-selected select small">
                     <option value disabled selected>Seleciona el oficio</option>
-                    <?php /*
+                    <?php 
                       //sql rol 
-                      $sql1 = "SELECT * FROM rol";        
+                      $sql1 = "SELECT * FROM oficio WHERE tipoOficio = 0";        
                       $result1 = mysqli_query($con,$sql1) or die(mysqli_close($con));
                       if(mysqli_num_rows($result1)>0){
-                        while($rowRol = mysqli_fetch_assoc($result1)){*/
+                        while($rowOficio = mysqli_fetch_assoc($result1)){
                       ?>
-                        <option value="">Oficio 1</option>
-                        <option value="">Oficio 2</option>
-                        <option value="">Oficio 3</option>
-                        <option value="">Oficio 4</option>
-                      <?php/*
+                        <option value="<?php echo $rowOficio['idOficio']?>"><?php echo $rowOficio['nombre']?></option>
+                      <?php
                         }
-                      }*/
+                      }
                       ?>
                   </select>
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
@@ -574,12 +571,12 @@ $row = mysqli_fetch_assoc($result);
                     <span class="asteriscoData form-text">*</span>
                   </label>
                   <input type="text" id="asunto" 
-                        palceholder="Asunto" 
+                        palceholder="asunto" 
                         class="campos form-control ember-text-field ember-view" name="asunto">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
-              </div>
+              </div>            
             </div>
             <div class="row">                    
               <div class="col-md-12 col-xs-12">
@@ -587,8 +584,8 @@ $row = mysqli_fetch_assoc($result);
                   <label for="file-01" class="control-label">Subir archivo
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <input id="file-01" type="file"
-                        class="campos form-control ember-text-field ember-view" name="oficio">
+                  <input  type="file"
+                        class="campos form-control ember-text-field ember-view" name="archivoOficio">
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
                 </div>
@@ -600,7 +597,7 @@ $row = mysqli_fetch_assoc($result);
                   <label for="" class="control-label">Breve Descripción
                     <span class="asteriscoData form-text">*</span>
                   </label>
-                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view">
+                  <textarea cols="30" rows="5" class="campos form-control ember-text-field ember-view" name="descripcion">
                   </textarea>
                   <small class="smallDatos form-text form-text-error hide" aria-live="polite"> Este campo es obligatorio
                   </small>
@@ -615,7 +612,7 @@ $row = mysqli_fetch_assoc($result);
               </div>
             </div>
           </form>
-        </div>
+          </div>
         <!--Tenemos el tab-03 el formulario  externo destinatario (entrada) 
         
       
@@ -682,9 +679,9 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
-            <h4>Datos del Oficio</h4>
-            <hr class="red">
             <div class="row">
+              <h4>Datos del Oficio</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="numero-oficio" class="control-label">Número de oficio
@@ -893,9 +890,9 @@ $row = mysqli_fetch_assoc($result);
                 </div>
               </div>
             </div>
-            <h4>Datos del Oficio</h4>
-            <hr class="red">
             <div class="row">
+              <h4>Datos del Oficio</h4>
+              <hr class="red">
               <div class="col-md-6 col-xs-12">
                 <div class="form-group">
                   <label for="numero-oficio" class="control-label">Número de oficio

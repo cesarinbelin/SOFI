@@ -39,7 +39,7 @@ if($contrasenia_cifrado == $row['contraseniaUsuario'] ){
 		
 				echo "Si coinciden";
 			
-				header("Location: indexAdministrador.php");
+				header("Location: buscarOficio.html");
 			
  		break;
 		 case "2":

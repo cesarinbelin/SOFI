@@ -62,7 +62,7 @@ include_once("conn/conn.php");
             <li><a href="oficios.php">Lista de Oficios</a></li> 
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
             <li class="divider"></li>
-            <li><a href="#">Buscar Oficio</a></li>
+            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>
@@ -100,10 +100,10 @@ include_once("conn/conn.php");
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio">Subir nuevo Oficio</a></li>
             <li class="divider"></li>
-            <li><a href="#">Buscar Oficio</a></li>
+            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>

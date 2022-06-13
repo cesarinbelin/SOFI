@@ -64,10 +64,10 @@ include_once("conn/conn.php");
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
             <li class="divider"></li>
-            <li><a href="#">Buscar Oficio</a></li>
+            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>
@@ -107,7 +107,8 @@ include_once("conn/conn.php");
 	$sql= "SELECT rol.nombreRol, 713utic. idEmpleado, adscripcion, nombre, apellidoPaterno, apellidoMaterno, correo, activo, fechaIngreso, usuario.idUsuario
          FROM 713utic 
          INNER JOIN usuario ON 713utic.idEmpleado = usuario.idEmpleado 
-         INNER JOIN rol ON usuario.idRol = rol.idRol;";	
+         INNER JOIN rol ON usuario.idRol = rol.idRol 
+         WHERE activo =0;";	
 	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
     if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_assoc($result)){

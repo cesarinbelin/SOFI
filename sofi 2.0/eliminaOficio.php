@@ -27,7 +27,7 @@ if($con){
 		unlink($direccion);
 	echo '<script type="text/javascript">
 		     alert("Se Elimino correctamente el oficio");
-		     window.location.href="oficios.php"
+		     window.location.href="buscarOficio.html"
 		     </script>';
 }else{
 		echo "<p>No se ejecuto la sentencia SQL </p>";

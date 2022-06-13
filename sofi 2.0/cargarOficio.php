@@ -2,7 +2,6 @@
 include ("sesiones.php");
 include("permiso01.php");
 include_once("conn/conn.php");
-//include_once("carpetas.php");
 
 //Configuramos la hora
 date_default_timezone_set("America/Mexico_City");

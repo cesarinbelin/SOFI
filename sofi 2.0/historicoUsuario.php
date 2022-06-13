@@ -63,10 +63,10 @@ include_once("conn/conn.php");
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="oficios.php">Lista de Oficios</a></li>
+            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
             <li class="divider"></li>
-            <li><a href="#">Buscar Oficio</a></li>
+            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
       </ul>
@@ -100,7 +100,7 @@ include_once("conn/conn.php");
     <?php
     if($con){
     //echo "se abre la conexióna la BD";
-	$sql= "SELECT * FROM 713utic where activo = '0';";	
+	$sql= "SELECT * FROM 713utic where activo = '1';";	
 	$result=mysqli_query($con,$sql) or die(mysqli_close($con));
     if(mysqli_num_rows($result)>0){
     while($row = mysqli_fetch_assoc($result)){
