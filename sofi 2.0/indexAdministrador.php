@@ -1,6 +1,6 @@
 <?php
 include ("sesiones.php");
-include("permiso01.php");
+//include("permiso01.php");
 include_once("conn/conn.php");
 
 
@@ -74,11 +74,12 @@ include_once("conn/conn.php");
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
+            <li><a href="VistaBuscarOficio.php">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
-            <li class="divider"></li>
-            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
+        </li>
+        <li>
+          <a href="logout.php" role="button" >Cerrar Sesion </a>
         </li>
       </ul>
     </div>

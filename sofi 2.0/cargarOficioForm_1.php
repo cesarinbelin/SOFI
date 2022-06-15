@@ -30,7 +30,7 @@ $fechaRespuesta = $_POST['fechaRespuesta'];
 $asunto = $_POST['asunto'];
 //$archivoOficio = $_POST['archivoOficio'];
 $descripcion = $_POST['descripcion'];
-//Esta boolean nos va a indicar si es interno o externo 
+//Esta boolean nos va a indicar si es interno(0) o externo(1) 
 $tipoOficio="0";
 $fechaRegistroSOFI= date("yy-m-d h:i:s");
 

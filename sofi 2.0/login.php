@@ -39,7 +39,7 @@ if($contrasenia_cifrado == $row['contraseniaUsuario'] ){
 		
 				echo "Si coinciden";
 			
-				header("Location: buscarOficio.html");
+				header("Location: VistaBuscarOficio.php");
 			
  		break;
 		 case "2":
@@ -50,7 +50,7 @@ if($contrasenia_cifrado == $row['contraseniaUsuario'] ){
 		
 				echo "Si coinciden";
 			
-				header("Location: vistas/vista02_gral.php");
+				header("Location: indexAdministrador.php");
 			
  		break;
 		 case "3":
@@ -61,7 +61,7 @@ if($contrasenia_cifrado == $row['contraseniaUsuario'] ){
 		
 				echo "Si coinciden";
 			
-				header("Location: vistas/vista03_gral.php");
+				header("Location: indexAdministrador.php");
 			
  		break;
 

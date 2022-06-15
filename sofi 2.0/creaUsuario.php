@@ -22,7 +22,7 @@ if($con){
 
 	//Esta consulta no funcion al 100
 	$sql1="INSERT INTO 713utic (adscripcion, nombre, apellidoPaterno, apellidoMaterno,  correo, activo, idUnidad, fechaIngreso) 
-          VALUES('$adscripcion', '$nombre', '$apellidoPaterno', '$apellidoMaterno', '$correo', '1', '$idUnidad', '$fechaIngreso')";
+          VALUES('$adscripcion', '$nombre', '$apellidoPaterno', '$apellidoMaterno', '$correo', '0', '$idUnidad', '$fechaIngreso')";
 	$result1=mysqli_query($con,$sql1) or die(mysqli_close($con));
 	
 	  if($result1){	

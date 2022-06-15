@@ -16,22 +16,18 @@ if($idEmpleadoCondicion=!0){
 }else{
   $oficioDirigido="0";
 }
-$entradaSalida="1";
+$entradaSalida="0";
 $nombre = $_POST['nombre'];
-$cargo = $_POST['cargo'];
-$unidad = $_POST['unidad'];
+$empresa = $_POST['empresa'];
 $oficio = $_POST['oficio'];
 $fechaElaboracion = $_POST['fechaElaboracion'];
 
 //$oficioReferencia1 = $_POST['oficioReferencia1'];
-$fechaRecibidoSICT = $_POST['fechaRecibidoSICT'];
-$estadoOficio = $_POST['estadoOficio'];
-$fechaRespuesta = $_POST['fechaRespuesta'];
 $asunto = $_POST['asunto'];
 //$archivoOficio = $_POST['archivoOficio'];
 $descripcion = $_POST['descripcion'];
 //Esta boolean nos va a indicar si es interno(0) o externo(1) 
-$tipoOficio="0";
+$tipoOficio="1";
 $fechaRegistroSOFI= date("yy-m-d h:i:s");
 
 
@@ -184,16 +180,12 @@ if (move_uploaded_file($_FILES['archivoOficio']['tmp_name'], $nuevo_nombre_ruta)
 
        echo "<p>Los oficios deben cargarse en PDF.</p>";
    } else {
-       $sql = "INSERT INTO oficio (tipoOficio, estadoOficio, oficioDirigido, entradaSalida,
-                                   oficio, fechaElaboracion, asunto, descripcion, 
-                                   fechaRecibidoSICT,
-                                   fechaRespuesta, OficioReferencia1, fechaRegistroSOFI,
-                                   idEmpleado, nombre, cargo, unidad, direccion) 
-                   VALUES ('$tipoOficio', '$estadoOficio', '$oficioDirigido', '$entradaSalida', 
+       $sql = "INSERT INTO oficio (tipoOficio, oficioDirigido, entradaSalida,
+                                   oficio, fechaElaboracion, asunto, descripcion,
+                                   idEmpleado, nombre, empresa, direccion) 
+                   VALUES ('$tipoOficio', '$oficioDirigido', '$entradaSalida', 
                            '$oficio', '$fechaElaboracion', '$asunto', '$descripcion', 
-                           '$fechaRecibidoSICT', 
-                           '$fechaRespuesta', '$oficioReferencia1', '$fechaRegistroSOFI', 
-                           '$idEmpleado', '$nombre', '$cargo', '$unidad', '$nuevo_nombre_ruta')";
+                           '$idEmpleado', '$nombre', '$empresa', '$nuevo_nombre_ruta')";
                    //.die(mysql_error());
        $result = mysqli_query($con, $sql)or die(mysqli_error($con));
   }
@@ -201,7 +193,7 @@ if (move_uploaded_file($_FILES['archivoOficio']['tmp_name'], $nuevo_nombre_ruta)
   if ($result) {
     echo '<script type ="text/javascript">
     alert("El documento se subio correctamente");
-    window.location.href="buscarOficio.html";
+    window.location.href="VistaBuscarOficio.php";
     </script>';
   } else {
        echo 'Algo fallo :c cesarinbelin';

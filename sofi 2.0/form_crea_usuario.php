@@ -59,52 +59,12 @@ include_once("conn/conn.php");
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="oficios.php">Lista de Oficios</a></li> 
+            <li><a href="VistaBuscarOficio.php">Lista de Oficios</a></li>
             <li><a href="form_cargar_oficio.php">Subir nuevo Oficio</a></li>
-            <li class="divider"></li>
-            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
           </ul>
         </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-</div>
-<h3>Crear nuevo Usuario</h3>
-<hr class="red">
-    <main class="page">
-      <!-- Llamda a archivo jquery -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
-<nav class="navbar navbar-inverse sub-navbar navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#subenlaces">
-        <span class="sr-only">Interruptor de Navegación</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Sistema de Oficios</a>
-    </div>
-    <div class="collapse navbar-collapse" id="subenlaces">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="usuarios.php">Lista de Usuarios</a></li>
-            <li><a href="form_crea_usuario.php">Crear nuevo Usuario</a></li>
-            <li class="divider"></li>
-            <li><a href="historicoUsuario.php">Historico Usuarios</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Oficios <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="buscarOficio.html">Lista de Oficios</a></li>
-            <li><a href="form_cargar_oficio">Subir nuevo Oficio</a></li>
-            <li class="divider"></li>
-            <li><a href="buscarOficio.php">Buscar Oficio</a></li>
-          </ul>
+        <li>
+          <a href="logout.php" role="button" >Cerrar Sesion </a>
         </li>
       </ul>
     </div>

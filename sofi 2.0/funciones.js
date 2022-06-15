@@ -23,3 +23,11 @@ function mensajeEliminarUsuario(){
     }
     return false;
 }
+
+
+/*$(document).ready(function(){
+	$("#nombre_ft1").click(function(){
+		$("#nombre_ft1").hide();
+	});
+	
+ });*/

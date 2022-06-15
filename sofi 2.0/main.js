@@ -23,3 +23,4 @@ $(document).on('keyup', '#caja_busqueda', function(){
         buscar_datos();
     }
 });
+

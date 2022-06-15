@@ -11,9 +11,10 @@ include_once("conn/conn.php");
     //echo "se abre la conexióna la BD";
 	//$sql= "SELECT * FROM oficio ORDER BY fechaElaboracion DESC";
   $sql="SELECT  713utic.nombre AS nombre713utic, 713utic.apellidoPaterno, 713utic.apellidoMaterno, 713utic.adscripcion,   
-        oficio.idOficio, oficio.nombre, oficio.cargo, oficio.asunto, oficio.oficio, oficio.direccion, oficio.fechaElaboracion
+        oficio.idOficio, oficio.tipoOficio, oficio.nombre, oficio.cargo, oficio.asunto, oficio.oficio, oficio.direccion, oficio.fechaElaboracion
          FROM 713utic 
          INNER JOIN oficio ON 713utic.idEmpleado = oficio.idEmpleado
+         WHERE oficio.tipoOficio = "1"
          ORDER BY fechaElaboracion DESC";	
   if(isset($_POST['consulta'])){
     //$q=$mysqli->real_escape_string($_POST['consulta']);
@@ -79,6 +80,3 @@ include_once("conn/conn.php");
   echo $salida;
   
   ?>
-
-
-
